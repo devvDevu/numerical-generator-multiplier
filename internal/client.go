@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
 	"math/rand"
@@ -10,9 +11,12 @@ import (
 )
 
 func main() {
+	seqSize := flag.Int("seq", 10000000, "Размер последовательности")
+	flag.Parse()
+
 	rand.Seed(time.Now().UnixNano())
 
-	sequence := generateSequence(10000000)
+	sequence := generateSequence(*seqSize)
 	// sum of sequence
 	sum0 := calculateSum(sequence)
 	// sum of sequence, where multiplier > x
